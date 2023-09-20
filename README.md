@@ -21,7 +21,7 @@ We recommend the following sequence to approach the problems:
   - `count_rotations.py`
   
 - **AVL Trees** (2 questions)
-  - `avl_tree.py`
+  - `red_black_tree.py`
   
 - **Binary Heaps** (4 questions)
   - `min_heapify.py`
