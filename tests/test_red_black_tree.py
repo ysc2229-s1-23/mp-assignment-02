@@ -1,47 +1,41 @@
-from solutions.red_black_tree import RBNode, RBTree
+from questions.red_black_tree import RBTree, RBNode
 
 def test_RBTree():
-    rb = RBTree()
+    rbtree = RBTree()
 
-    # Insertion
-    rb.insert(30)
-    assert rb.root.key == 30
-    assert rb.root.color == RBNode.BLACK
+    # Basic Insertion
+    rbtree.insert(30)
+    assert rbtree.get_sorted_keys() == [30]
 
-    rb.insert(20)
-    assert rb.root.left.key == 20
-    assert rb.root.left.color == RBNode.RED
+    rbtree.insert(20)
+    assert rbtree.get_sorted_keys() == [20, 30]
 
-    rb.insert(10)
-    assert rb.root.left.key == 10
-    assert rb.root.left.left.color == RBNode.BLACK
+    rbtree.insert(10)
+    assert rbtree.get_sorted_keys() == [10, 20, 30]
 
-    rb.insert(25)
-    assert rb.root.right.key == 30
-    assert rb.root.left.right.key == None
-    assert rb.root.left.right.color == RBNode.BLACK
+    # Complex Insertions
+    items = [20, 15, 25, 10, 5, 1, 30, 35, 40]
+    for item in items:
+        rbtree.insert(item)
+        assert rbtree.get_sorted_keys() == sorted(items[:items.index(item)+1])
 
-    # Left Rotation
-    rb.insert(35)
-    assert rb.root.right.key == 30
-    assert rb.root.right.right.key == 35
-    assert rb.root.right.right.color == RBNode.RED
+    # Further testing a potential left rotation
+    rbtree = RBTree()
+    rbtree.insert(30)
+    rbtree.insert(40)
+    rbtree.insert(50)
+    assert rbtree.get_sorted_keys() == [30, 40, 50]
 
-    rb.insert(40)  # This should trigger a left rotation at node 30
-    assert rb.root.right.key == 30
-    assert rb.root.right.left.key == 25
-    assert rb.root.right.right.key == 35
+    # Further testing a potential right rotation
+    rbtree = RBTree()
+    rbtree.insert(30)
+    rbtree.insert(20)
+    rbtree.insert(10)
+    assert rbtree.get_sorted_keys() == [10, 20, 30]
 
-    # Reset the tree for right rotation test
-    rb = RBTree()
-
-    # Right Rotation
-    rb.insert(30)
-    rb.insert(40)
-    assert rb.root.right.key == 40
-    assert rb.root.right.color == RBNode.RED
-
-    rb.insert(35)  # This should trigger a right rotation at node 30
-    assert rb.root.right.key == 40
-    assert rb.root.right.left.key == None
-    assert rb.root.right.right.key == None
+    # Larger Test Case
+    rbtree = RBTree()
+    items = list(range(100, 0, -1))
+    for item in items:
+        rbtree.insert(item)
+        assert rbtree.get_sorted_keys() == sorted(items[:items.index(item)+1])

@@ -11,6 +11,7 @@ A Red-Black Tree is a self-balancing binary search tree where each node has an e
 
 Please implement the following methods for the Red-Black Tree:
 1. insert: Inserts a node into the Red-Black tree and ensures tree remains balanced.
+You need to make sure that the insert method correctly maintains the Red-Black Tree properties. 
 3. leftRotate: Performs left rotation on the tree.
 4. rightRotate: Performs right rotation on the tree.
 
@@ -76,3 +77,16 @@ class RBTree:
     def rightRotate(self, y: RBNode) -> None:
         # TODO: Implement rightRotate method
         return None
+    
+    # Helper method to get keys in a sorted order
+    def get_sorted_keys(self):
+        keys = []
+
+        def inorder_traversal(node):
+            if node.key is not None:
+                inorder_traversal(node.left)
+                keys.append(node.key)
+                inorder_traversal(node.right)
+
+        inorder_traversal(self.root)
+        return keys
