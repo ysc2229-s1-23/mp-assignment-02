@@ -20,7 +20,7 @@ We recommend the following sequence to approach the problems:
   - `search_min_difference_element.py`
   - `count_rotations.py`
   
-- **AVL Trees** (2 questions)
+- **AVL Trees** (3 questions)
   - `red_black_tree.py`
   
 - **Binary Heaps** (4 questions)
